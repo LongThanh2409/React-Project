@@ -7,10 +7,10 @@ type Props = {
 const ShowResults = ({data}: Props) => {
   return (
     <Link className="" to={"#"}>
-    <div className="flex items-center my-3 hover:bg-gray-100 py-1">
+    <div className="flex items-center my-3 hover:bg-gray-700 py-3 px-1">
 
         {/* <img className={cx("avatar")} src={data.avatar} alt={data.avatar} /> */}
-        <Image className="w-8" src={data?.image[0]} alt={data.name} />
+        <Image className="w-14 object-cover h-auto" src={data?.image[0]} alt={data.name} />
         <div className="">
 
             <h4 className="ml-3">

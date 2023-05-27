@@ -9,7 +9,7 @@ const DefaultLayout = ({children}:DefaultLayoutProps) => {
   return (
     <div className="container">
         <Header />
-        <div className="content">
+        <div className="content mt-20">
             <div className="main"> {children} </div>
         </div>
     <Footer/>

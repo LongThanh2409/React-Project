@@ -3,18 +3,18 @@ import { Image } from 'antd';
 const Contact = () => {
  
   return <>
-  <div className="p-16 mt-10  bg-gray-50">
-  <div className="p-8 bg-white shadow-2xl  mt-24">
+  <div className="p-16 mt-10  bg-gray-100">
+  <div className="p-8 bg-white shadow-2xl">
     <div className="">
     
       
         <div
-          className="  mx-auto  -mt-24 flex items-center justify-center text-indigo-500 ">
+          className="w-52  mx-auto  -mt-24 flex items-center justify-center text-indigo-500 ">
        
           <Image
-         width={160}
-            height={160}
-         className='rounded-full'
+         width={"100%"}
+           
+         className=''
        
        src="error"
        fallback="https://media-cdn-v2.laodong.vn/storage/newsportal/2021/6/24/923749/Taylor-Swift-Nu-Nghe.jpg"

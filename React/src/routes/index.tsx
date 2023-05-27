@@ -6,6 +6,7 @@ import Blog from "../page/User/Blog/Blog";
 import Cart from "../page/User/Cart/Cart";
 import Contact from "../page/User/Contact/Contact";
 import Home from "../page/User/Home/Home";
+import SearchResults from "../page/User/SearchResults/SearchResults";
 import Shop from "../page/User/Shop/Shop";
 
 import config from "./config";
@@ -16,7 +17,9 @@ const router = [
 {path:config.about, component:About, layout: DefaultLayout },
 {path:config.blog, component:Blog, layout: DefaultLayout},
 {path:config.contact, component:Contact, layout: DefaultLayout},
+{path:config.search, component: SearchResults, layout:DefaultLayout},
 {path:config.signin, component: Signin, layout:null},
 {path:config.signup, component: Signup, layout:null},
+
 ]
 export default router

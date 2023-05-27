@@ -44,6 +44,32 @@ export const get = async (req, res) => {
     }
   }
 };
+
+
+
+
+export const getSearch = async (req, res) => {
+  try {
+    const keyword = req.query.keyword;
+    const regex = new RegExp(keyword, 'i')
+    const product = await Product.find({ name: regex });
+    if (product.length === 0) {
+      return res.json({
+        message: "Không tìm thấy sản phẩm phù hợp !",
+      });
+    }
+    return res.json({
+      message: "Lấy sản phẩm thành công !",
+      product,
+    });
+  } catch (error) {
+    if (error.name === "CastError") {
+      return res.status(400).json({ message: "Không có sản phẩm nào có tên đó" });
+    }
+    return res.status(500).json({ message: "Lỗi server" });
+  }
+};
+
 export const create = async (req, res) => {
   try {
     //validate

@@ -7,5 +7,6 @@ const config = {
         contact: "/contact",
         signin: "/signin",
         signup: "/signup",
+        search: "/search",
 }
 export default config
