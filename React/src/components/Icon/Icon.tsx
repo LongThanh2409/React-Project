@@ -5,7 +5,7 @@ export const Search = () => {
 
    <>
     <svg 
-className="text-zinc-50"
+className="text-zinc-50 "
    height="19" viewBox="0 0 19 19" width="19" >
     <g fill="currentColor " stroke="none" strokeWidth="1">
       <g transform="translate(-1016 -32)"><g>

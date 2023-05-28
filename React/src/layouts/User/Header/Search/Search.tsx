@@ -35,6 +35,7 @@ useEffect(() => {
 const handleSubmit = (e:any) => {
   e.preventDefault();
   navigate(`/search?keyword=${searchValues}`);
+     setShowResults(false)
 };
 const hanldOutsie = () => {
 setShowResults(false)
@@ -68,7 +69,7 @@ setShowResults(false)
     onClickOutside={hanldOutsie}
   >
 <div className="relative w-full flex items-center">
-       <input className="w-64  md:w-96 h-10 rounded-md outline-none pr-20 pl-2"  type="text" name="" id="" 
+       <input className="w-full  h-9 sm:w-96 sm:h-10 rounded-md caret-teal-600 focus:ring-2 focus:ring-teal-500 focus:outline-none pr-20 pl-2"  type="text" name="" id="" 
        value={searchValues}
        onChange={((e) => setSearchValues(e.target.value))}
        onFocus={() => {
@@ -76,7 +77,7 @@ setShowResults(false)
 
     }}
        />
-        <button className="absolute right-1 bg-[#088178]  px-5 py-2">
+        <button className="absolute  right-1  rounded-sm bg-[#088178] px-3  py-[7px] sm:px-5 sm:py-2">
             < Search  />
             </button>
   </div>

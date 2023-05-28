@@ -8,8 +8,10 @@ interface DefaultLayoutProps {
 const DefaultLayout = ({children}:DefaultLayoutProps) => {
   return (
     <div className="container">
-        <Header />
-        <div className="content mt-20">
+    <div className=' fixed top-0 z-50 bg-slate-200 shadow-xl  w-full  py-3'> 
+    <Header />
+    </div>
+        <div className="content mt-28 xl:mt-20">
             <div className="main"> {children} </div>
         </div>
     <Footer/>

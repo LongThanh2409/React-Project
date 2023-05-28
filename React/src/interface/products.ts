@@ -1,11 +1,19 @@
 interface Iproducts {
-_id: string;
-name: string;
-price: number;
-image: Array<string>;
-description: string;
-countInStock: number;
-rating: number;
-numReviews: number;
+    _id?: number | string;
+    name: string;
+    price: number;
+    priceSale: number;
+    isFavorite:boolean;
+    featured: boolean;
+    image: string;
+    description: string;
+    description_short?: string;
+    hot_sale?: number;
+    size: Array<string>;
+    color: Array<string>;
+    quantity: number;
+    category: string;
+    inventoryStatus: string;
+    rating: number;
 
 }

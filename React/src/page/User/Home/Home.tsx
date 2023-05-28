@@ -1,5 +1,5 @@
 import Banner1 from "../../../components/User/Banner/Banner1"
-import List_Products from "../../../components/User/ListProducts/List_Products"
+
 import Main_Banner from "./MainBanner/Main_Banner"
 
 
@@ -18,7 +18,7 @@ const Home = () => {
       </p>
     </div>
     <div className="list-products text-center">
-      <List_Products/>
+    
     </div>
 </div>
     <div className="banner1 px-16">

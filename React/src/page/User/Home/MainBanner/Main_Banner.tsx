@@ -3,7 +3,7 @@ const Main_Banner = () => {
   
   return (
     <section
-    className="relative bg-cover bg-center bg-no-repeat mt-16"
+    className="relative  bg-cover bg-center bg-no-repeat mt-16"
     style={{  backgroundImage: "url('../../../../../src/assets/banner.jpg')",
             backgroundPosition:"right",
           
@@ -12,7 +12,7 @@ const Main_Banner = () => {
   >
     <div
  
-      className="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25"
+      className="absolute  inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25"
     ></div>
   
     <div

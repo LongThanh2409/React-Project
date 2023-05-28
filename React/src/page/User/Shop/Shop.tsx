@@ -4,7 +4,7 @@ import List_Products from '../../../components/User/ListProducts/List_Products';
 const Shop = () => {
   return (
    <>
-   <div className='mt-24'> 
+   <div className=''> 
    <div className="menu-item">
 
    </div>

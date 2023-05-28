@@ -1,4 +1,7 @@
+
 import { NavLink } from "react-router-dom"
+import Categorys from "../../../../../page/User/Categorys/Categorys"
+
 
 const MenuItem = () => {
     const userMenu = [
@@ -28,6 +31,7 @@ const MenuItem = () => {
             title: "Contact",
             to: "/contact"
         },
+       
     ]
     
   return (
@@ -36,15 +40,23 @@ const MenuItem = () => {
     <>
     {userMenu.map((item, index) => (
         
-        <li key={index} >
+        <li className="mt-1" key={index} >
         <NavLink
 
-         to={item.to}   className={`text-base font-semibold transition before:content-[''] before:absolute relative before:-bottom-1 before:left-0 before:h-0.5 before:w-0 before:bg-slate-600 hover:before:w-full before:transition-all ${
+         to={item.to}   className={` text-base font-semibold transition before:content-[''] before:absolute relative before:-bottom-1 before:left-0 before:h-0.5 before:w-0 before:bg-slate-600 hover:before:w-full before:transition-all ${
             location.pathname === item.to ? 'text-[#088178]' : ''
           }`}  aria-current="page">{item.title}</NavLink>
+
+
+
+
       </li> 
+
         ))}
-        
+      
+     <li className="mt-1">
+     <Categorys/>
+     </li>
     </>
 
 

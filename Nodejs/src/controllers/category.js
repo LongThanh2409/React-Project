@@ -1,4 +1,5 @@
 import { categorySchema } from "../Schema/product";
+import category from "../models/category";
 import Category from "../models/category";
 import Products from "../models/product";
 export const getAll = async (req, res) => {
@@ -40,6 +41,10 @@ export const add = async (req, res) => {
     const { error } = categorySchema.validate(req.body, { abortEarly: false });
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
+    }
+    const nameExist = await Category.findOne({ name: req.body.name})
+    if(nameExist){
+      return res.status(400).json({ message: "Tên danh mục đã tồn tại" });
     }
     const data = await Category.create(req.body);
     if (data.length == 0) {
