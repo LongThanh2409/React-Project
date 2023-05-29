@@ -5,7 +5,7 @@ interface Iproducts {
     priceSale: number;
     isFavorite:boolean;
     featured: boolean;
-    image: string;
+    image: Array<string>;
     description: string;
     description_short?: string;
     hot_sale?: number;

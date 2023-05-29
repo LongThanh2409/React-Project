@@ -9,7 +9,7 @@ import { CloseOutlined } from '@ant-design/icons';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  
+
 
   const showDrawer = () => {
     setOpen(true);
@@ -32,7 +32,7 @@ const Header = () => {
    </div>
    
     <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-     <Menu   />
+     <Menu onClick={onClose}  />
     </div>
     <div className="flex items-center  md:order-2">
   
@@ -47,12 +47,12 @@ const Header = () => {
     </button>
     
 
-    <Drawer  className="relative z-50" title={ < Logo/>} placement="left" width={"70%"} onClose={onClose} open={open} 
+    <Drawer className="relative z-50" title={ < Logo/>} placement="left" width={"70%"} onClose={onClose} open={open}  
     style={{height:"100%"}} 
     closeIcon={<CloseOutlined style={{ fontSize: "20px" , border:"2px gray solid", padding:"3px", borderRadius:"5px"}} />}
     >
    <div className="absolute flex top-12 z-0  md:mt-10"> 
-   <Menu /> 
+   <Menu onClick={onClose} /> 
 
    </div>
       </Drawer>

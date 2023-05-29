@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom"
 import Categorys from "../../../../../page/User/Categorys/Categorys"
 
 
-const MenuItem = () => {
+
+const MenuItem = ({ onClick }: { onClick: () => void }) => {
     const userMenu = [
         {
           
@@ -33,7 +34,7 @@ const MenuItem = () => {
         },
        
     ]
-    
+
   return (
   
 
@@ -45,7 +46,7 @@ const MenuItem = () => {
 
          to={item.to}   className={` text-base font-semibold transition before:content-[''] before:absolute relative before:-bottom-1 before:left-0 before:h-0.5 before:w-0 before:bg-slate-600 hover:before:w-full before:transition-all ${
             location.pathname === item.to ? 'text-[#088178]' : ''
-          }`}  aria-current="page">{item.title}</NavLink>
+          }`}  aria-current="page"  onClick={onClick}  >{item.title}</NavLink>
 
 
 

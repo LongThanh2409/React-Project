@@ -5,6 +5,7 @@ import Signup from "../page/User/Auth/Signup/Signup";
 import Blog from "../page/User/Blog/Blog";
 import Cart from "../page/User/Cart/Cart";
 import Contact from "../page/User/Contact/Contact";
+import Detail_Product from "../page/User/DetailProduct/Detail_Product";
 import Home from "../page/User/Home/Home";
 import SearchResults from "../page/User/SearchResults/SearchResults";
 import Shop from "../page/User/Shop/Shop";
@@ -18,6 +19,7 @@ const router = [
 {path:config.blog, component:Blog, layout: DefaultLayout},
 {path:config.contact, component:Contact, layout: DefaultLayout},
 {path:config.search, component: SearchResults, layout:DefaultLayout},
+{path:config.detail_product, component: Detail_Product, layout:DefaultLayout},
 {path:config.signin, component: Signin, layout:null},
 {path:config.signup, component: Signup, layout:null},
 

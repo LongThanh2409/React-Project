@@ -28,7 +28,7 @@ export const getAll = async (req, res) => {
 
 export const get = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById({ _id: req.params.id , name: req.body.name});
     if (!product) {
       return res.json({
         message: "Lấy sản phẩm không thành công !",

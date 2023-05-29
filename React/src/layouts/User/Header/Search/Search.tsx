@@ -28,11 +28,13 @@ useEffect(() => {
       }
     setSearchResults(data.product)
     } catch (err) {
+    
     }
 }
     fetchProduct()
 }, [searchValues])
 const handleSubmit = (e:any) => {
+
   e.preventDefault();
   navigate(`/search?keyword=${searchValues}`);
      setShowResults(false)

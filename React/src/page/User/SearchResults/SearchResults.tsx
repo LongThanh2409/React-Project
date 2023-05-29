@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getSearch } from "../../../api/Search/Search";
-import ShowResults from "../../../layouts/User/Header/Search/ShowResults/ShowResults";
+
 
 const SearchResults = () => {
   const location = useLocation();
@@ -13,12 +13,14 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchSearchResults = async () => {
       try {
-        if (keyword) {
+        if (keyword && searchResults.length !== 0) {
           const { data } = await getSearch(keyword);
           setSearchResults(data.product);
         }
       } catch (error) {
         console.error(error);
+        console.log(searchResults.length);
+        
       }
     };
 
@@ -27,7 +29,11 @@ const SearchResults = () => {
 
   return (
     <div className="pt-5 h-full bg-slate-50">
-      <h1 className="text-center my-5">Total <strong>{searchResults.length}</strong > Search results for <strong className="italic text-teal-600">"{keyword}"</strong></h1>
+  
+   
+        <h1 className="text-center my-5">Total <strong>{searchResults.length}</strong > Search results for <strong className="italic text-teal-600">"{keyword}"</strong></h1>
+      
+     
       <section className=" py-10">
   <div className="grid max-w-full grid-cols-1 gap-6 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     {searchResults.map((item, index) => (

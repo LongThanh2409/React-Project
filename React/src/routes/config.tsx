@@ -8,5 +8,6 @@ const config = {
         signin: "/signin",
         signup: "/signup",
         search: "/search",
+        detail_product: "/detail-product/:name/:id",
 }
 export default config
