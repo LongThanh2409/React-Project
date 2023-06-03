@@ -1,22 +1,23 @@
 import Product from "../models/product";
 import { productSchema } from "../Schema/product";
 export const getAll = async (req, res) => {
-  const { _sort = "createdAt", _limit = 100, _order = "asc" } = req.query;
+  const { _sort = "priceSale", _limit = 8, _order = "asc", _page = 1 } = req.query;
   const option = {
     limit: _limit,
     sort: {
-      [_sort]: _order === "asc" ? 1 : -1,
+      [_sort]: _sort === 'rating' ? _order === "asc" ? 1 : -1 : _order === "asc" ? 1 : -1,
     },
+    page: _page,
   };
   try {
     const product = await Product.paginate({}, option);
-    if (product.length === 0) {
+    if (product.docs.length === 0) {
       return res.json({
-        message: "Không có sản phẩm nào !",
+        message: "Không có sản phẩm nào!",
       });
     }
     return res.json({
-      message: "Lấy danh sách sản phẩm thành công !",
+      message: "Lấy danh sách sản phẩm thành công!",
       product,
     });
   } catch (error) {
@@ -49,10 +50,18 @@ export const get = async (req, res) => {
 
 
 export const getSearch = async (req, res) => {
+  const { _sort = "priceSale", _limit = 8, _order = "asc", _page = 1 } = req.query;
+  const option = {
+    limit: _limit,
+    sort: {
+      [_sort]: _sort === 'rating' ? _order === "asc" ? 1 : -1 : _order === "asc" ? 1 : -1,
+    },
+    page: _page,
+  };
   try {
     const keyword = req.query.keyword;
     const regex = new RegExp(keyword, 'i')
-    const product = await Product.find({ name: regex });
+    const product = await Product.paginate({ name: regex }, option);
     if (product.length === 0) {
       return res.json({
         message: "Không tìm thấy sản phẩm phù hợp !",

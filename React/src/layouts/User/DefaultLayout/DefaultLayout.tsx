@@ -12,7 +12,7 @@ const DefaultLayout = ({children}:DefaultLayoutProps) => {
     <Header />
     </div>
         <div className="content mt-28 xl:mt-20">
-            <div className="main"> {children} </div>
+            <div className="main m-auto w-screen"> {children} </div>
         </div>
     <Footer/>
     </div>

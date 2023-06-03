@@ -1,6 +1,6 @@
 
 import { NavLink } from "react-router-dom"
-import Categorys from "../../../../../page/User/Categorys/Categorys"
+
 
 
 
@@ -55,9 +55,9 @@ const MenuItem = ({ onClick }: { onClick: () => void }) => {
 
         ))}
       
-     <li className="mt-1">
-     <Categorys/>
-     </li>
+    
+   
+
     </>
 
 

@@ -1,7 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState,useEffect} from "react";
 import { getProduct } from "../../../api/Products/products";
 import { Carousel } from "antd";
+import { getCategorys } from "../../../api/Categorys/Categorys";
+import config from "../../../routes/config";
 
 const Detail_Product = () => {
   const [product, setProduct] = useState<Iproducts>({} as Iproducts)
@@ -9,7 +11,7 @@ const Detail_Product = () => {
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedSize, setSelectedSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
-
+  const [category, setCategorys] = useState<Icategorys[]>([])
   const clickColor = (index:any) => {
     setSelectedColor(index);
   };
@@ -25,6 +27,17 @@ const Detail_Product = () => {
       setQuantity(quantity - 1);
     }
   };
+
+  const fetchCategory = async () => {
+    try {
+      const {data} = await getCategorys()
+      setCategorys(data)
+      console.log(data);
+      
+    } catch (error) {
+      
+    }
+    }
   useEffect(() => {
    const fetchProduct = async () =>{
   try {
@@ -38,19 +51,45 @@ const Detail_Product = () => {
  
 
   }
+  fetchCategory()
   fetchProduct()    
   }, [ id])
 
   
   
   return (
-    <div className="bg-gray-100 container mx-auto px-32">
-    <div className="flex p-4  bg-white">
+    <div className="  bg-gray-50 container mx-auto">
+ <div className="w-full ">
+     <div className="w-full top-[76px] pl-24 py-1 shadow-lg fixed z-10 bg-white">
+    {category.map((item, index) => (
+      product.categoryId === item._id && (
+        <div
+          key={index}
+          className="w-full"
+        >
+          <div className="flex gap-3">
+            <div className="home">
+              <Link to={config.home}>Home</Link>
+            </div>
+            <ul className="flex items-center gap-3 ">
+              <li>{item.name}</li>
+              <span>
+              <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"></path></svg>
+              </span>
+              <li className="text-gray-400 text-sm">{product.name}</li>
+            </ul>
+          </div>
+        </div>
+      )
+    ))}
+  </div>
+ </div>
+    <div className="flex mt-28 px-32  bg-white">
       <div className="w-full md:w-1/3">
-        <Carousel autoplay>
+        <Carousel  autoplay>
           {product.image &&
-            product.image.map((item) => (
-              <img className="w-full object-cover" src={item} alt="" />
+            product.image.map((item, index) => (
+             <img key={index} className="w-full object-cover" src={item} alt="" />
             ))}
         </Carousel>
       </div>

@@ -9,5 +9,6 @@ const config = {
         signup: "/signup",
         search: "/search",
         detail_product: "/detail-product/:name/:id",
+        products_category: "/products-category/:id",
 }
 export default config

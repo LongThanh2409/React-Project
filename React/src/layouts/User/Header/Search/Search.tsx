@@ -19,14 +19,15 @@ useEffect(() => {
     return;
 }
   const fetchProduct = async () => {
-    const {data} = await getSearch(searchValues)
+    const {data} = await getSearch(searchValues, undefined, null,null)
+
 
     try {
       if(data.product.length === 0) {
         setSearchResults([])
         return
       }
-    setSearchResults(data.product)
+    setSearchResults(data.product.docs)
     } catch (err) {
     
     }
@@ -36,6 +37,7 @@ useEffect(() => {
 const handleSubmit = (e:any) => {
 
   e.preventDefault();
+  setSearchResults([]); // Reset searchResults to an empty array
   navigate(`/search?keyword=${searchValues}`);
      setShowResults(false)
 };
@@ -60,7 +62,7 @@ setShowResults(false)
 
      <div className="w-full px-3 py-1">
      <h1 className="text-lg">Products Name</h1>
-         {searchResults.map((item)=>(
+         {searchResults?.slice(0,6).map((item)=>(
             <div  key={item._id} className="">
               <ShowResults  key={item._id} data={item}/>
               </div>
