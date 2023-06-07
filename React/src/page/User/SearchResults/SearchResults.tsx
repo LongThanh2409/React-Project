@@ -54,11 +54,11 @@ const SearchResults = () => {
       }
       const hanldRating = ()=>{
        
-          setSort('rating')
-          setColor('red')
-          if(color=="red" || sort=='rating'){
-          setColor('white')
-          setSort('')
+        setSort('rating')
+        setColor('#088178 ')
+        if(color=="#088178" || sort=='rating'){
+        setColor('white')
+        setSort('')
           }
       
       

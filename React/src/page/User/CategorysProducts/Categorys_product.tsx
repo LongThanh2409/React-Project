@@ -17,7 +17,7 @@ const Categorys_product = () => {
       };
   
       fetchProductCate();
-    }, []);
+    }, [id]);
    
   return (
  <>

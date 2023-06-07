@@ -82,7 +82,7 @@ setShowResults(false)
     }}
        />
         <button className="absolute  right-1  rounded-sm bg-[#088178] px-3  py-[7px] sm:px-5 sm:py-2">
-            < Search  />
+            < Search />
             </button>
   </div>
   </Tippy>

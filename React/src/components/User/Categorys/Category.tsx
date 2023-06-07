@@ -43,12 +43,12 @@ return (
         <div className="sm:flex">
         <ul className="w-1/2">  
           {categorys.slice(0, Math.ceil(categorys.length / 2)).map((item, index) => (
-            <Link to={`/products-category/${item._id}`}>  <li className="leading-7 cursor-pointer pl-2 py-1 text-base hover:bg-gray-100" key={index}> {item.name} </li> </Link>
+            <Link to={`/products-category/${item._id}`}>  <li onClick={onClose} className="leading-7 cursor-pointer pl-2 py-1 text-base hover:bg-gray-100" key={index}> {item.name} </li> </Link>
           ))}
         </ul>
         <ul  className="w-1/2">
           {categorys.slice(Math.ceil(categorys.length / 2)).map((item, index) => (
-          <Link to={`/products-category/${item._id}`}>  <li className="leading-7 cursor-pointer pl-2 py-1 text-base hover:bg-gray-100" key={index}> {item.name} </li> </Link>
+          <Link to={`/products-category/${item._id}`}>  <li onClick={onClose} className="leading-7 cursor-pointer pl-2 py-1 text-base hover:bg-gray-100" key={index}> {item.name} </li> </Link>
           ))}
         </ul>
       </div>

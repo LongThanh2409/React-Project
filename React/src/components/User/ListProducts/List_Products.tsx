@@ -14,17 +14,17 @@ const List_Products = ({item}:PropsType) => {
          
             <article  className="relative rounded-xl bg-white p-3 shadow-xl hover:shadow-2xl hover:transform hover:scale-105 duration-300 border-[#cce7d0]">
               {
-                item.hot_sale === undefined || !item.hot_sale ? null : <span className="absolute -top-2 left-0  m-2 rounded-full bg-black px-1 text-center text-sm font-medium text-white">{item.hot_sale}% OFF</span>
+                item.hot_sale === undefined || !item.hot_sale ? null : <span className="absolute z-10 -top-1 left-0  m-2 rounded-full bg-black px-1 text-center text-sm font-medium text-white">{item.hot_sale}% OFF</span>
               }
-  
-              <Link to={`/detail-product/${encodeURIComponent(item.name)}/${item._id}`} className="relative mx-3 mt-3 md:h-60 flex justify-center overflow-hidden rounded-xl">
-                <img src={item.image[0]} className="w-full object-contain cursor-pointer" alt="product image" />
                 <span
                   title="Add to Favorites"
-                  className="text-4xl text-gray-300 hover:text-red-600 duration-200 absolute right-10 top-0 cursor-pointer"
+                  className="text-4xl text-gray-300 hover:text-red-600 z-10 duration-200 absolute right-2  -top-1 cursor-pointer"
                 >
                   &hearts;
                 </span>
+              <Link to={`/detail-product/${encodeURIComponent(item.name)}/${item._id}`} className="relative mx-3 mt-3 md:h-60 flex justify-center overflow-hidden rounded-xl">
+                <img src={item.image[0]} className="w-full object-contain cursor-pointer" alt="product image" />
+               
               </Link>
   
               <div className="mt-4 px-5 pb-5">
