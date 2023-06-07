@@ -1,6 +1,7 @@
 
 import {  Rate } from 'antd';
 import { Link } from "react-router-dom";
+
 type PropsType = {
 item: Iproducts
 }
@@ -14,8 +15,16 @@ const List_Products = ({item}:PropsType) => {
          
             <article  className="relative rounded-xl bg-white p-3 shadow-xl hover:shadow-2xl hover:transform hover:scale-105 duration-300 border-[#cce7d0]">
               {
-                item.hot_sale === undefined || !item.hot_sale ? null : <span className="absolute z-10 -top-1 left-0  m-2 rounded-full bg-black px-1 text-center text-sm font-medium text-white">{item.hot_sale}% OFF</span>
+                item.hot_sale === undefined || !item.hot_sale ? null :<div className='absolute z-10 -top-1 left-[-3px] py-2 px-2 ' style={{
+                   backgroundImage: `url('./seo-off.png')`,
+                    backgroundRepeat:"no-repeat",
+                    backgroundSize: '100% 100%', 
+
+                  
+                  }} > <span  className=" m-2  rounded-full text-center text-sm font-medium text-white">{item.hot_sale}% OFF</span></div>
               }
+          
+              
                 <span
                   title="Add to Favorites"
                   className="text-4xl text-gray-300 hover:text-red-600 z-10 duration-200 absolute right-2  -top-1 cursor-pointer"
@@ -56,7 +65,7 @@ const List_Products = ({item}:PropsType) => {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <Rate value={item.rating} />
+                  <Rate disabled  value={item.rating} />
                 </div>
                 <a
                   href="#"

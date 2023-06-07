@@ -33,44 +33,19 @@ const Signup = () => {
                   <p className="my-4 text-2xl font-semibold">Register</p>
               
                   <div className="relative mb-4 border-b-[1px] border-gray-500" >
-                    <input
-                      type="text"
-                      className=" peer block min-h-[auto] w-full rounded  border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                      id="exampleFormControlInput1"
-                      placeholder="Username" />
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary "
-                      >
-                        Email
-                    </label>
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                      <input type="email" name="email" id="email" className="bg-gray-50  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 focus:outline-none" placeholder="name@company.com" />
                   </div>
 
                   <div className="relative mb-4 border-b-[1px] border-gray-500" >
-                    <input
-                      type="text"
-                      className=" peer block min-h-[auto] w-full rounded  border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                      id="exampleFormControlInput1"
-                      placeholder="Username" />
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary "
-                      >Username
-                    </label>
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                      <input type="email" name="email" id="email" className="bg-gray-50  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 focus:outline-none" placeholder="Nguyen Van A" />
                   </div>
 
             
                   <div className="relative mb-4 border-b-[1px] border-gray-500 " data-te-input-wrapper-init>
-                  <input
-            type="password"
-            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-            id="exampleFormControlInput33"
-            placeholder="Password" />
-                    <label
-                      htmlFor="exampleFormControlInput11"
-                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                      >Password
-                    </label>
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Password</label>
+                      <input type="email" name="email" id="email" className="bg-gray-50  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 focus:outline-none" placeholder="********" />
                   </div>
 
                  
@@ -85,12 +60,12 @@ const Signup = () => {
                     </button>
 
                   
-                    <a href="#!">Forgot password?</a>
+                   
                   </div>
 
               
                   <div className="flex items-center justify-between pb-6">
-                    <p className="mb-0 mr-2">Don't have an account?</p>
+                  
                    <Link to={config.signin}>
                         <button
                           type="button"
