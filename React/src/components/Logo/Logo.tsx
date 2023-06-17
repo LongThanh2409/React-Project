@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import config from "../../../../routes/config"
+import config from "../../routes/config"
 
 const Logo = () => {
   return (

@@ -2,6 +2,7 @@ import {Route, Routes, BrowserRouter} from 'react-router-dom'
 import router from './routes'
 
 import { Fragment } from "react"
+import LayoutAdmin from './layouts/Admin/DefaultLayoutAdmin/LayoutAdmin'
 
 function App() {
 
@@ -19,7 +20,10 @@ function App() {
        else if(route.layout) {
          Layout = route.layout
        }
-      return (
+        if(route.layout== LayoutAdmin){
+        Layout = route.layout
+       }
+       return (
         <Route key={index} path={route.path} element={<Layout> <Page/> </Layout>} />
         )
       })}

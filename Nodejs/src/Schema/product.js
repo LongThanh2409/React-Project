@@ -1,5 +1,8 @@
 import Joi from "joi";
 export const productSchema = Joi.object({
+  _id: Joi.string().optional(),
+  createdAt: Joi.date().optional(),
+  updatedAt: Joi.date().optional(),
   name: Joi.string().required().min(4).messages({
     "string.empty": "Name không được để trống",
     "any.required": "Trường Name này là bắt buộc",
@@ -37,17 +40,13 @@ export const productSchema = Joi.object({
   hot_sale: Joi.number(),
   description_short: Joi.string(),
   featured: Joi.boolean(),
-  rating: Joi.number().required().messages({
-    "string.empty": "rating không được để trống",
-    "any.required": "Trường Price này là bắt buộc",
-    "number.base": "Price phải là 1 số",
-  }),
+  rating: Joi.number(),
   quantity: Joi.number().required().messages({
     "string.empty": "rating không được để trống",
-    "any.required": "Trường Price này là bắt buộc",
-    "number.base": "Price phải là 1 số",
+    "any.required": "Trường Số lượng này là bắt buộc",
+    "number.base": "SỐ lượng phải là 1 số",
   }),
-  inventoryStatus: Joi.string(),
+ 
   categoryId: Joi.string().required().messages({
     "string.empty": "categoryId không được để trống",
     "any.required": "Trường categoryId này là bắt buộc",

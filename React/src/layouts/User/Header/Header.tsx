@@ -1,6 +1,6 @@
 import {useState} from "react" 
 import { Link } from "react-router-dom"
-import Logo from "./Logo/Logo"
+import Logo from "../../../components/Logo/Logo"
 import Menu from "./Menu/Menu"
 import Search from "./Search/Search"
 import config from "../../../routes/config"

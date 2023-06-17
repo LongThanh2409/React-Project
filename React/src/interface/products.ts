@@ -2,7 +2,7 @@ interface Iproducts {
     _id?: number | string;
     name: string;
     price: number;
-    priceSale: number;
+    priceSale?: number;
     isFavorite:boolean;
     featured: boolean;
     image: Array<string>;
@@ -13,7 +13,7 @@ interface Iproducts {
     color: Array<string>;
     quantity: number;
     categoryId: string;
-    inventoryStatus: string;
+    
     rating: number;
 
 }
