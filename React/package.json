@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@hookform/resolvers": "^3.1.1",
     "@tippyjs/react": "^4.2.6",
     "antd": "^5.6.0",
     "axios": "^1.4.0",
@@ -19,7 +23,8 @@
     "react-hook-form": "^7.44.3",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.11.2",
-    "tw-elements": "^1.0.0-beta2"
+    "tw-elements": "^1.0.0-beta2",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

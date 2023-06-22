@@ -1,48 +1,59 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   CategorysForm,
   schemaCategorys,
 } from "../../../../interface/categorys";
-import { AddCategory } from "../../../../api/Categorys/Categorys";
-import { useNavigate } from "react-router-dom";
-
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EditCategory, getCategory } from "../../../../api/Categorys/Categorys";
 import { message } from "antd";
-const AddCategorys = () => {
-  const naviagate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
+const EditCategorys = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [messageApi, contextHolder] = message.useMessage();
   const {
     register,
     handleSubmit,
+
     formState: { errors },
   } = useForm<CategorysForm>({
     resolver: yupResolver(schemaCategorys),
+    defaultValues: async () => {
+      return await getCategoryId(id!);
+    },
   });
-  const onSubmit = async (datas: CategorysForm) => {
+
+  const getCategoryId = async (id: string) => {
     try {
-      await AddCategory(datas);
-      successful();
-      setTimeout(() => {
-        naviagate("/admin/category");
-      }, 700);
-    } catch (error: any) {
-      if (error.response.data.message) {
-        setErrorMessage(error.response.data.message);
+      const { data } = await getCategory(id);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onSubmit = async (data: CategorysForm) => {
+    try {
+      if (id) {
+        await EditCategory(id, data);
+        successful();
+        setTimeout(() => {
+          navigate("/admin/category");
+        }, 700);
       }
+    } catch (error) {
+      console.log(error);
     }
   };
   const successful = () => {
     messageApi.open({
       type: "success",
-      content: `Thêm mới danh mục thành công`,
+      content: `Sửa danh mục thành công`,
     });
   };
   return (
     <>
       {contextHolder}
-
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
           <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
@@ -67,9 +78,6 @@ const AddCategorys = () => {
                 <span className="text-red-500 text-sm">
                   {errors.name ? errors.name.message : ""}
                 </span>
-                <span className="text-red-500 text-sm">
-                  {errorMessage ? errorMessage : ""}
-                </span>
               </div>
             </div>
 
@@ -86,4 +94,4 @@ const AddCategorys = () => {
   );
 };
 
-export default AddCategorys;
+export default EditCategorys;

@@ -5,40 +5,91 @@ import { getProducts, removeProduct } from "../../../api/Products/products";
 import { Link } from "react-router-dom";
 import { getCategorys } from "../../../api/Categorys/Categorys";
 import config_Admin from "../../../routes/admin_config";
+import { Icategorys } from "../../../interface/categorys";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const ProductsAdmin = () => {
   const [products, SetProducts] = useState<Iproducts[]>([]);
-  const [page, setPage] = useState(1);
-  const [sort, sortBy] = useState();
   const [searchValue, SetSearchValue] = useState("");
   const [category, SetCategory] = useState<Icategorys[]>([]);
   const [modal2Open, setModal2Open] = useState(false);
-  const [selectedProductId, setSelectedProductId] = useState<string | number>(
-    ""
+  const [selectedProductId, setSelectedProductId] = useState<string>("");
+  const [selectedProductIdBox, setSelectedProductIdBox] = useState<string[]>(
+    []
   );
+  const [selectAll, setSelectAll] = useState(false);
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await getProducts(page, 10, sort);
-      SetProducts(data.product.docs);
+      try {
+        const { data } = await getProducts();
+
+        SetProducts(data.product.docs);
+      } catch (error: any) {}
     };
     const fetchCategory = async () => {
-      const { data } = await getCategorys();
-      SetCategory(data);
+      try {
+        const {
+          data: { data },
+        } = await getCategorys();
+        SetCategory(data);
+      } catch (error) {}
     };
 
     fetchCategory();
     fetchProducts();
-  }, [page, sort, searchValue]);
+  }, [searchValue]);
   const hanldRemove = async (id: string | number) => {
     try {
       const { data } = await removeProduct(id);
+
       SetProducts(products.filter((item) => item._id !== data.product._id));
       setModal2Open(false);
-    } catch (error) {}
+    } catch (error: any) {}
   };
-  const showModel = (id: string | number) => {
+  const showModel = (id: string) => {
     setSelectedProductId(id!);
     setModal2Open(true);
+  };
+  // Chọn tất cả các select
+  const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked;
+
+    setSelectAll(checked);
+
+    if (checked) {
+      const productsAll = products?.map((item) => item._id!);
+
+      setSelectedProductIdBox(productsAll);
+    } else {
+      setSelectedProductIdBox([]);
+    }
+  };
+  // chọn từng box
+  const handleSelectOne = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    idBox: string
+  ) => {
+    const checked = event.target.checked;
+    if (checked) {
+      setSelectedProductIdBox([...selectedProductIdBox, idBox]);
+    } else {
+      // Nếu ô checkbox được bỏ chọn, loại bỏ ID danh mục khỏi state
+      setSelectedProductIdBox(
+        selectedProductIdBox.filter((id) => id !== idBox!)
+      );
+      setSelectAll(false);
+    }
+  };
+  // xóa những box đã chọn
+  const hanldRemoveBox = async () => {
+    if (window.confirm("Bạn có chắc là muốn xóa không?")) {
+      for (const product of selectedProductIdBox) {
+        await removeProduct(product);
+        SetProducts(products.filter((item) => item._id !== product));
+      }
+    }
+    setSelectedProductIdBox([]);
   };
   return (
     <>
@@ -61,12 +112,19 @@ const ProductsAdmin = () => {
         <div className="content w-full">
           <Link to={config_Admin.add_product}>
             <button className="my-10 ml-10 bg-green-500 px-5 py-2 text-white font-bold rounded-sm">
-              Thêm sản phẩm mới
+              Thêm mới
             </button>
           </Link>
+          <button
+            className="mt-10 ml-2 bg-red-500 px-5 py-2 text-white font-bold rounded-sm"
+            onClick={hanldRemoveBox}
+            disabled={selectedProductIdBox.length === 0}
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
           <div className="main_table ">
             <div className="relative w-full overflow-x-scroll shadow-md sm:rounded-lg">
-              <div className="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
+              <div className="flex items-center justify-between  pb-4 bg-white dark:bg-gray-900">
                 <div>
                   <div className="sort_by pl-10">
                     <label className="mr-5" htmlFor="">
@@ -128,6 +186,8 @@ const ProductsAdmin = () => {
                           id="checkbox-all-search"
                           type="checkbox"
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          onChange={handleSelectAll}
+                          checked={selectAll}
                         />
                         <label
                           htmlFor="checkbox-all-search"
@@ -149,7 +209,6 @@ const ProductsAdmin = () => {
                     <th scope="col" className="px-6 py-3">
                       Giá khuyến mãi
                     </th>
-
                     <th scope="col" className="px-6 py-3">
                       Size
                     </th>
@@ -159,14 +218,12 @@ const ProductsAdmin = () => {
                     <th scope="col" className="px-6 py-3">
                       Số lượng
                     </th>
-
                     <th scope="col" className="px-6 py-3">
                       Danh mục
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Mô tả
                     </th>
-
                     <th scope="col" className="px-6 py-3">
                       Action
                     </th>
@@ -182,7 +239,7 @@ const ProductsAdmin = () => {
                     .map((product, index) => (
                       <tr
                         key={index}
-                        className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-600"
+                        className="bg-white cursor-pointer dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-600"
                       >
                         <td className="w-4 p-4">
                           <div className="flex items-center">
@@ -190,6 +247,10 @@ const ProductsAdmin = () => {
                               id="checkbox-table-search-3"
                               type="checkbox"
                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                              onChange={(e) => handleSelectOne(e, product._id!)}
+                              checked={selectedProductIdBox.includes(
+                                product._id!
+                              )}
                             />
                             <label
                               htmlFor="checkbox-table-search-3"
@@ -204,7 +265,7 @@ const ProductsAdmin = () => {
                             {product.name}
                           </h1>
                         </th>
-                        <td className="w-24 px-2 py-1 ">
+                        <td className="w-24 px-2 py-1">
                           <Image
                             title={product.name}
                             className="w-full"
@@ -221,7 +282,6 @@ const ProductsAdmin = () => {
                             {product.priceSale}
                           </span>
                         </td>
-
                         <td className="px-6 py-4">
                           {product.size.map((size, index) => (
                             <span key={index} className="text-md text-gray-900">
@@ -229,7 +289,6 @@ const ProductsAdmin = () => {
                             </span>
                           ))}
                         </td>
-
                         <td className="px-6 py-4">
                           {product.color.map((color, index) => (
                             <span key={index} className="text-md text-gray-900">
@@ -243,7 +302,7 @@ const ProductsAdmin = () => {
                           </span>
                         </td>
                         <td className="px-6 py-4">
-                          {category.map((category, index) =>
+                          {category?.map((category, index) =>
                             category._id === product.categoryId ? (
                               <span
                                 key={index}
@@ -254,13 +313,12 @@ const ProductsAdmin = () => {
                             ) : null
                           )}
                         </td>
-
                         <td className="flex  py-9 w-32">
                           <span className=" text-sm truncate ">
                             {product.description}
                           </span>
                         </td>
-                        <td className=" px-6 py-4  text-sm font-medium">
+                        <td className="px-6 py-4  text-sm font-medium">
                           <div className="flex">
                             <Link
                               to={`${config_Admin.edit_product}/${product._id}`}

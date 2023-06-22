@@ -1,7 +1,8 @@
 const config_Admin = {
   home: "/admin",
   products: "/admin/products",
-  about: "/admin/about",
+  add_category: "/admin/add-category",
+  edit_category: "/admin/edit-category",
   blog: "/admin/blog",
   cart: "/admin/cart",
   contact: "/admin/contact",

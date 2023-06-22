@@ -1,5 +1,6 @@
 import Product from "../models/product";
 import { productSchema } from "../Schema/product";
+import Category from "../models/category";
 export const getAll = async (req, res) => {
   const { _sort = "priceSale", _limit = 8, _order = "asc", _page = 1 } = req.query;
   const option = {
@@ -16,6 +17,7 @@ export const getAll = async (req, res) => {
         message: "Không có sản phẩm nào!",
       });
     }
+   
     return res.json({
       message: "Lấy danh sách sản phẩm thành công!",
       product,
@@ -86,6 +88,13 @@ export const create = async (req, res) => {
     if (error) {
       return res.status(400).json({
         message: error.details.map((error) => error.message),
+      });
+    }
+    const categoryId = req.body.categoryId;
+    const category = await Category.findById(categoryId);
+    if (!category) {
+      return res.status(400).json({
+        message: "categoryId không hợp lệ",
       });
     }
     const product = await Product.create(req.body);

@@ -1,5 +1,5 @@
 import instance from "../config";
-const getProducts = (page: number, limits: number, sortOption: any) => {
+const getProducts = (page?: number, limits?: number, sortOption?: any) => {
   return instance.get("/products", {
     params: {
       _page: page,

@@ -10,8 +10,9 @@ import { getCategorys } from "../../../../api/Categorys/Categorys";
 import { ISize } from "../../../../interface/sizes";
 import { IColor } from "../../../../interface/colors";
 import { Alert, Select, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import config_Admin from "../../../../routes/admin_config";
+import { Icategorys } from "../../../../interface/categorys";
 
 const AddProducts = () => {
   const navigate = useNavigate();
@@ -30,7 +31,10 @@ const AddProducts = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const { data } = await getCategorys();
+        const {
+          data: { data },
+        } = await getCategorys();
+
         SetCategorys(data);
       } catch (error) {}
     };
@@ -281,7 +285,9 @@ const AddProducts = () => {
                     ))}
                   </select>
                 ) : (
-                  "ko có cate"
+                  <Link to={`${config_Admin.add_category}`}>
+                    Chưa có category nào Thêm ngay
+                  </Link>
                 )}
               </div>
               <div>

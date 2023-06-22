@@ -4,25 +4,22 @@ import Category from "../../../components/User/Categorys/Category";
 import List_Products from "../../../components/User/ListProducts/List_Products";
 import { getProduct_Cate } from "../../../api/Products/product_category";
 const Categorys_product = () => {
-    const [cateProduct, setCateProduct] = useState<Iproducts[]>([]);
-    const { id } = useParams();
-    useEffect(() => {
-      const fetchProductCate = async () => {
-        try {
-          
-            const { data } = await getProduct_Cate(id!) ;
-            setCateProduct(data.products); 
-        } catch (error) {
-        }
-      };
-  
-      fetchProductCate();
-    }, [id]);
-   
+  const [cateProduct, setCateProduct] = useState<Iproducts[]>([]);
+  const { id } = useParams();
+  useEffect(() => {
+    const fetchProductCate = async () => {
+      try {
+        const { data } = await getProduct_Cate(id!);
+        setCateProduct(data.products);
+      } catch (error) {}
+    };
+
+    fetchProductCate();
+  }, [id]);
+
   return (
- <>
-   {console.log(cateProduct)}
-        <section className="bg-gray-100 ">
+    <>
+      <section className="bg-gray-100 ">
         <Category />
         {/* <div className="sort w-full  bg-slate-200">
           <div className="grid grid-cols-1 gap-y-2 md:flex   md:gap-80 py-5 items-center">
@@ -74,8 +71,8 @@ const Categorys_product = () => {
           onChange={handlePageChange}
         />
       </div> */}
- </>
-  )
-}
+    </>
+  );
+};
 
-export default Categorys_product
+export default Categorys_product;

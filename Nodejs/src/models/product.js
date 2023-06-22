@@ -21,11 +21,11 @@ const productSchema = new Schema(
     },
     size: {
       type: [String],
-      enum: ["XS", "S", "M", "L", "XL"],
+      enum: [],
     },
     color: {
       type: [String],
-      enum: ["green", "blue", "pink", "red", "indigo"],
+      enum: [],
     },
     
     //tạo 1 tr category
@@ -43,5 +43,17 @@ productSchema.pre("save", function (next) {
  
   next();
 });
+// productSchema.pre("remove", async function (next) {
+//   const categoryId = this.categoryId;
+//   try {
+//     // Xóa tất cả sản phẩm có liên quan đến danh mục bị xóa
+//     await Product.deleteMany({ categoryId });
+//     next();
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 productSchema.plugin(paginate);
+
 export default mongoose.model("Product", productSchema);

@@ -15,12 +15,14 @@ import SearchResults from "../page/User/SearchResults/SearchResults";
 import Shop from "../page/User/Shop/Shop";
 
 //Admin
-import HomePage from "../page/Admin/HomePage/HomePage";
+
 import LayoutAdmin from "../layouts/Admin/DefaultLayoutAdmin/LayoutAdmin";
 import ProductsAdmin from "../page/Admin/Products/ProductsAdmin";
 import CategorysAdmin from "../page/Admin/Categorys/CategorysAdmin";
 import AddProducts from "../page/Admin/CRUD/Products/AddProducts";
 import EditProducts from "../page/Admin/CRUD/Products/EditProducts";
+import AddCategorys from "../page/Admin/CRUD/Categorys/AddCategorys";
+import EditCategorys from "../page/Admin/CRUD/Categorys/EditCategorys";
 
 const router = [
   { path: config.home, component: Home, layout: DefaultLayout },
@@ -40,10 +42,11 @@ const router = [
     component: Categorys_product,
     layout: DefaultLayout,
   },
+  // Signin and Signup
   { path: config.signin, component: Signin, layout: null },
   { path: config.signup, component: Signup, layout: null },
   //Admin
-  { path: config_Admin.home, component: HomePage, layout: LayoutAdmin },
+  { path: config_Admin.home, component: ProductsAdmin, layout: LayoutAdmin },
   {
     path: config_Admin.products,
     component: ProductsAdmin,
@@ -62,6 +65,16 @@ const router = [
   {
     path: `${config_Admin.edit_product}/:id`,
     component: EditProducts,
+    layout: LayoutAdmin,
+  },
+  {
+    path: config_Admin.add_category,
+    component: AddCategorys,
+    layout: LayoutAdmin,
+  },
+  {
+    path: `${config_Admin.edit_category}/:id`,
+    component: EditCategorys,
     layout: LayoutAdmin,
   },
 ];

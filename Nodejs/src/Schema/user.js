@@ -15,10 +15,7 @@ export const signupSchema = Joi.object({
     "string.min": 'Trường "mật khẩu" phải có ít nhất 6 ký tự',
     "any.required": "Trường mật khẩu là bắt buộc",
   }),
-  image_url: Joi.string().required().messages({
-    "string.empty": 'Trường "image_url" không được để trống',
-    "any.required": "Trường image_url là bắt buộc",
-  }),
+
   confirmPassword: Joi.string().valid(Joi.ref("password")).required().messages({
     "string.empty": 'Trường "xác nhận mật khẩu" không được để trống',
     "any.required": "Trường xác nhận mật khẩu là bắt buộc",

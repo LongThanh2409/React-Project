@@ -13,6 +13,7 @@ import { IColor } from "../../../../interface/colors";
 import { Alert, Select, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import config_Admin from "../../../../routes/admin_config";
+import { Icategorys } from "../../../../interface/categorys";
 
 const EditProducts = () => {
   const navigate = useNavigate();
@@ -33,13 +34,16 @@ const EditProducts = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const { data } = await getCategorys();
+        const {
+          data: { data },
+        } = await getCategorys();
         SetCategorys(data);
       } catch (error) {}
     };
     const fetchSize = async () => {
       try {
         const { data } = await getSizes();
+        console.log(data);
 
         SetSizes(data.size);
       } catch (error) {}
@@ -201,7 +205,7 @@ const EditProducts = () => {
                     : images.map((image, index) => (
                         <div key={index} className="images w-[50%]  h-52">
                           <img
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                             src={watch(`image.${index}`)}
                             alt=""
                           />

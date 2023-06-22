@@ -68,9 +68,13 @@ export const colorSchema = Joi.object({
   }),
 });
 export const categorySchema = Joi.object({
+  _id: Joi.string().optional(),
+  createdAt: Joi.date().optional(),
+  updatedAt: Joi.date().optional(),
   name: Joi.string().required().messages({
     "string.empty": "Category không được để trống",
     "any.required": "Trường Category này là bắt buộc",
     "string.base": "Name phải là 1 String",
   }),
+  products: Joi.array(),
 });
