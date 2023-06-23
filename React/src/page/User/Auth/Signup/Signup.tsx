@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import config from "../../../../routes/config";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Signups } from "../../../../api/Auth/Auth";
 import { SignupForm, signupSchema } from "../../../../interface/Auth/auth";
+import { Modal } from "antd";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -17,9 +19,37 @@ const Signup = () => {
 
   const onSubmit = async (data: SignupForm) => {
     try {
-      const res = await Signups(data);
-      console.log(res);
-    } catch (error) {}
+      await Signups(data);
+      alert("Đăng kí thành công");
+      setTimeout(() => {
+        navigate("/signin");
+      });
+    } catch (error) {
+      info();
+    }
+  };
+  const info = () => {
+    Modal.info({
+      title: "Kiểm tra lại email và mật khẩu đã đúng chưa",
+      style: { top: 300 },
+      okButtonProps: { className: "bg-blue-500 text-white" },
+      content: (
+        <>
+          <ul className="list-disc">
+            <li>
+              <p>
+                Hãy kiểm tra chính xác <strong>tài khoản </strong> hoặc
+              </p>
+              <p>
+                <strong>mật khẩu</strong> đã đúng định dạng chưa nhé
+              </p>
+            </li>
+            <li>Email có thể đã bị trùng</li>
+          </ul>
+        </>
+      ),
+      onOk() {},
+    });
   };
   return (
     <div className="w-full xl:w-3/4 m-auto pt-10">
