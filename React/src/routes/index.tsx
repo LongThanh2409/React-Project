@@ -23,6 +23,10 @@ import AddProducts from "../page/Admin/CRUD/Products/AddProducts";
 import EditProducts from "../page/Admin/CRUD/Products/EditProducts";
 import AddCategorys from "../page/Admin/CRUD/Categorys/AddCategorys";
 import EditCategorys from "../page/Admin/CRUD/Categorys/EditCategorys";
+import Users from "../page/Admin/Users/Users";
+import EditUser from "../page/Admin/CRUD/Users/EditUser";
+import AddUser from "../page/Admin/CRUD/Users/AddUser";
+import UsersAdmin from "../page/Admin/Users/UsersAdmin";
 
 const router = [
   { path: config.home, component: Home, layout: DefaultLayout },
@@ -75,6 +79,26 @@ const router = [
   {
     path: `${config_Admin.edit_category}/:id`,
     component: EditCategorys,
+    layout: LayoutAdmin,
+  },
+  {
+    path: `${config_Admin.users}`,
+    component: Users,
+    layout: LayoutAdmin,
+  },
+  {
+    path: `${config_Admin.users_admin}`,
+    component: UsersAdmin,
+    layout: LayoutAdmin,
+  },
+  {
+    path: `${config_Admin.edit_user}/:id`,
+    component: EditUser,
+    layout: LayoutAdmin,
+  },
+  {
+    path: config_Admin.add_user,
+    component: AddUser,
     layout: LayoutAdmin,
   },
 ];

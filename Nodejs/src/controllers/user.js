@@ -1,5 +1,5 @@
 import User from "../models/user";
-import { signinSchema, signupSchema } from "../Schema/user.js";
+import { UserSchema, signinSchema, signupSchema } from "../Schema/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -126,13 +126,16 @@ export const remove = async (req, res) => {
 export const update = async (req, res) => {
   try {
     // validate
-    const { error } = signupSchema.validate(req.body, { abortEarly: false });
+    const { error } = UserSchema.validate(req.body, { abortEarly: false });
     if (error) {
       return res.status(400).json({
         message: error.details.map((error) => error.message),
       });
     }
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const user = await User.findByIdAndUpdate(req.params.id,{...req.body,
+      password: hashedPassword, }, {
       new: true,
     });
     if (!user) {

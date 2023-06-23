@@ -1,11 +1,10 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import router from "./routes";
 
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import LayoutAdmin from "./layouts/Admin/DefaultLayoutAdmin/LayoutAdmin";
 
 function App() {
-  
   return (
     <>
       <BrowserRouter>

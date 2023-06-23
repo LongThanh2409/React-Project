@@ -15,7 +15,7 @@ export interface ISignin {
 export const signinSchema = Yup.object({
     email: Yup.string().email("Email sai định dạng").required("Trường dữ liệu bắt buộc"),
     password: Yup.string().required("Trường dữ liệu bắt buộc").min(6, "Nhập ít nhất 6 kí tự"),
-    role: Yup.string()
+    role: Yup.string() 
 })
 
 export type SigninForm = Yup.InferType<typeof signinSchema>
