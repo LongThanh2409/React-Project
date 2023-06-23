@@ -2,7 +2,7 @@ import { ReactNode, useEffect } from "react";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import config_Admin from "../../../routes/admin_config";
 
 interface LayoutAdminProps {
@@ -28,7 +28,7 @@ const LayoutAdmin = ({ children }: LayoutAdminProps) => {
         <div className="mt-16 w-64 h-screen hidden lg:block">
           <Sidebar />
         </div>
-        <div className="content flex-1 overflow-auto"> {children} </div>
+        <div className="mt-20 content flex-1 overflow-auto"> {children} </div>
       </div>
     </div>
   );
